@@ -45,13 +45,13 @@ struct SystemActionLink: View {
     private func backgroundColor(active: Bool) -> Color {
         switch destination {
         case .carbEntry:
-            return active ? Color("fresh") : Color("WidgetSecondaryBackground")
+            return active ? Color("fresh") : Color.clear
         case .bolus:
-            return active ? Color("insulin") : Color("WidgetSecondaryBackground")
+            return active ? Color("insulin") : Color.clear
         case .preMeal:
-            return active ? Color("fresh") : Color("WidgetSecondaryBackground")
+            return active ? Color("fresh") : Color.clear
         case .customPreset:
-            return active ? Color("glucose") : Color("WidgetSecondaryBackground")
+            return active ? Color("glucose") : Color.clear
         }
     }
     

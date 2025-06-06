@@ -13,7 +13,7 @@ extension View {
     func widgetBackground() -> some View {
         if #available(iOSApplicationExtension 17.0, *) {
             self.containerBackground(for: .widget) {
-                Color("WidgetBackground")
+                Color.clear
             }
         } else {
             self.background { Color("WidgetBackground") }

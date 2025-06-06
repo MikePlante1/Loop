@@ -10,6 +10,17 @@ import LoopUI
 import SwiftUI
 import WidgetKit
 
+extension View {
+    @ViewBuilder
+    func setWidgetAccentable(_ value: Bool = true) -> some View {
+        if #available(iOS 18.0, *) {
+            self.widgetAccentable(value)
+        } else {
+            self
+        }
+    }
+}
+
 struct SystemStatusWidgetEntryView : View {
     
     @Environment(\.widgetFamily) private var widgetFamily
@@ -21,14 +32,16 @@ struct SystemStatusWidgetEntryView : View {
             VStack(alignment: .center, spacing: 5) {
                 HStack(alignment: .center, spacing: 15) {
                     LoopCircleView(entry: entry)
-                    
+                        .setWidgetAccentable()
+
                     GlucoseView(entry: entry)
+                        .setWidgetAccentable()
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .padding(5)
                 .background(
                     ContainerRelativeShape()
-                        .fill(Color("WidgetSecondaryBackground"))
+                        .fill(Color.clear)
                 )
                 
                 PumpView(entry: entry)
@@ -36,7 +49,7 @@ struct SystemStatusWidgetEntryView : View {
                     .padding(5)
                     .background(
                         ContainerRelativeShape()
-                            .fill(Color("WidgetSecondaryBackground"))
+                            .fill(Color.clear)
                     )
             }
             
@@ -63,6 +76,7 @@ struct SystemStatusWidgetEntryView : View {
         .foregroundColor(entry.contextIsStale ? Color(UIColor.systemGray3) : nil)
         .padding(5)
         .widgetBackground()
+        .setWidgetAccentable()
     }
 }
 
